@@ -26,6 +26,8 @@ jobs:
           path: telegramBot
       - name: 🔐 Connect and deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}

@@ -26,7 +26,7 @@ services:
       POSTGRES_DB_URL: jdbc:postgresql://postgres:5432/company-event
       POSTGRES_DB_USER: postgres
       POSTGRES_DB_PASSWORD: root
-      SHOW_SQL: true
+      SHOW_SQL: "true"
       TELEGRAM_BOT_API_ADDRESS: http://company-events-telegram-bot:8081
     depends_on:
       - postgres
@@ -41,7 +41,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      BOT_TOKEN: # ТОКЕН ВАШЕГО БОТА ЗДЕСЬ
+      BOT_TOKEN: ${BOT_TOKEN}}
     depends_on:
       - backend-company-events
     networks:

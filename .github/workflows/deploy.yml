@@ -10,9 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout repository
+      - name: 📥 Checkout deployments
         uses: actions/checkout@v4
-
+      - name: 📥 Checkout backend
+        uses: actions/checkout@v4
+        with:
+          repository: CompanyEventsMiniApp/backend
+          path: backend
+      - name: 📥 Checkout telegram bot
+        uses: actions/checkout@v4
+        with:
+          repository: CompanyEventsMiniApp/telegramBot
+          path: telegramBot
       - name: 🔐 Connect and deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
         with:

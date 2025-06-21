@@ -22,7 +22,9 @@ jobs:
           script: |
             cd /home/deployer/deployments
             git pull origin main
+
             echo "BOT_TOKEN=${BOT_TOKEN}" > .env
 
+            export DOCKER_BUILDKIT=1
             docker-compose down
             docker-compose up --build -d

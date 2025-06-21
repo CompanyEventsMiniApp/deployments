@@ -41,7 +41,7 @@ services:
     ports:
       - "8081:8081"
     environment:
-      BOT_TOKEN: ${BOT_TOKEN}}
+      BOT_TOKEN: ${BOT_TOKEN}
     depends_on:
       - backend-company-events
     networks:

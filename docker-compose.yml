@@ -17,8 +17,8 @@ services:
 
   backend-company-events:
     build:
-      context: https://github.com/CompanyEventsMiniApp/backend#main
-      dockerfile: https://raw.githubusercontent.com/CompanyEventsMiniApp/backend/refs/heads/main/Dockerfile
+      context: ./backend
+      dockerfile: Dockerfile
     container_name: backend-company-events
     ports:
       - "8080:8080"
@@ -35,8 +35,8 @@ services:
 
   company-events-telegram-bot:
     build:
-      context: https://github.com/CompanyEventsMiniApp/telegramBot#main
-      dockerfile: https://raw.githubusercontent.com/CompanyEventsMiniApp/telegramBot/refs/heads/main/Dockerfile
+      context: ./telegramBot
+      dockerfile: Dockerfile
     container_name: company-events-telegram-bot
     ports:
       - "8081:8081"

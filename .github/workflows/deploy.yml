@@ -31,12 +31,11 @@ jobs:
           path: frontend
       - name: 🔐 Connect and deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
-        env:
-          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
         with:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
+          envs: BOT_TOKEN
           script: |
             cd /home/deployer/deployments
             git pull origin main
@@ -59,8 +58,12 @@ jobs:
               cd frontend && git pull origin main && cd ..
             fi
 
+            # Безопасно создаем .env файл с правильными правами доступа
             echo "BOT_TOKEN=${BOT_TOKEN}" > .env
+            chmod 600 .env
 
             export DOCKER_BUILDKIT=1
             docker-compose down
             docker-compose up --build -d
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}

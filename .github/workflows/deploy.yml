@@ -24,6 +24,11 @@ jobs:
         with:
           repository: CompanyEventsMiniApp/telegramBot
           path: telegramBot
+      - name: 📥 Checkout frontend
+        uses: actions/checkout@v4
+        with:
+          repository: CompanyEventsMiniApp/frontend
+          path: frontend
       - name: 🔐 Connect and deploy to VPS
         uses: appleboy/ssh-action@v1.0.0
         env:
@@ -46,6 +51,12 @@ jobs:
               git clone https://github.com/CompanyEventsMiniApp/telegramBot.git telegramBot
             else
               cd telegramBot && git pull origin main && cd ..
+            fi
+
+            if [ ! -d "frontend" ]; then
+              git clone https://github.com/CompanyEventsMiniApp/frontend.git frontend
+            else
+              cd frontend && git pull origin main && cd ..
             fi
 
             echo "BOT_TOKEN=${BOT_TOKEN}" > .env

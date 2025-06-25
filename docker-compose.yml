@@ -47,6 +47,19 @@ services:
     networks:
       - company-events-network
 
+  frontend-company-events:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend-company-events
+    ports:
+      - "80:80"
+    depends_on:
+      - backend-company-events
+    networks:
+      - company-events-network
+
+
 volumes:
   postgres_data:
 

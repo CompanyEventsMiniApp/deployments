@@ -2,7 +2,7 @@ name: Deploy Backend to server
 
 on:
   repository_dispatch:
-    types: [deploy_backend]
+    types: [deploy_event]
   push:
     branches:
       - main

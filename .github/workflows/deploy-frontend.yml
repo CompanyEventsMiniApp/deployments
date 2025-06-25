@@ -47,6 +47,7 @@ jobs:
 
       - name: 🏗️ Build frontend
         env:
+          CI: false
           REACT_APP_API_URL: http://${{ secrets.VPS_HOST }}:8080
           REACT_APP_YANDEX_API_KEY_JS: ${{ secrets.YANDEX_API_KEY_JS }}
           REACT_APP_YANDEX_API_KEY: ${{ secrets.YANDEX_API_KEY }}

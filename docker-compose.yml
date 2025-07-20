@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     container_name: backend-company-events
     ports:
-      - "8080:8080"
+      - "3005:3005"
     environment:
       POSTGRES_DB_URL: jdbc:postgresql://postgres:5432/company-event
       POSTGRES_DB_USER: postgres
@@ -43,6 +43,7 @@ services:
     environment:
       BOT_TOKEN: ${BOT_TOKEN}
       VPS_HOST: ${VPS_HOST}
+      BACKEND_API_URL: http://backend-company-events:3005
     depends_on:
       - backend-company-events
     networks:

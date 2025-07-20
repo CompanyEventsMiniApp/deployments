@@ -35,7 +35,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
-          envs: BOT_TOKEN
+          envs: BOT_TOKEN, VPS_HOST
           script: |
             cd /home/deployer/deployments
             git pull origin main
@@ -54,6 +54,7 @@ jobs:
 
             # Безопасно создаем .env файл с правильными правами доступа
             echo "BOT_TOKEN=${BOT_TOKEN}" > .env
+            echo "VPS_HOST=${VPS_HOST}"  >> .env
             chmod 600 .env
 
             export DOCKER_BUILDKIT=1
@@ -61,3 +62,4 @@ jobs:
             docker-compose up --build -d
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
+          VPS_HOST: ${{ secrets.VPS_HOST }}

@@ -31,7 +31,7 @@ jobs:
           host: ${{ secrets.VPS_HOST }}
           username: ${{ secrets.VPS_USER }}
           key: ${{ secrets.VPS_KEY }}
-          envs: BOT_TOKEN, VPS_HOST
+          envs: BOT_TOKEN, VPS_HOST, POSTGRES_DB_URL, POSTGRES_DB_USER, POSTGRES_DB_PASSWORD
           script: |
             cd /home/deployer/deployments
             git pull origin main
@@ -51,6 +51,9 @@ jobs:
             # Безопасно создаем .env файл с правильными правами доступа
             echo "BOT_TOKEN=${BOT_TOKEN}" > .env
             echo "VPS_HOST=${VPS_HOST}"  >> .env
+            echo "POSTGRES_DB_URL=${POSTGRES_DB_URL}" >> .env
+            echo "POSTGRES_DB_USER=${POSTGRES_DB_USER}" >> .env
+            echo "POSTGRES_DB_PASSWORD=${POSTGRES_DB_PASSWORD}" >> .env
             chmod 600 .env
 
             export DOCKER_BUILDKIT=1
@@ -59,3 +62,6 @@ jobs:
         env:
           BOT_TOKEN: ${{ secrets.BOT_TOKEN }}
           VPS_HOST: ${{ secrets.VPS_HOST }}
+          POSTGRES_DB_URL: ${{ secrets.POSTGRES_DB_URL }}
+          POSTGRES_DB_USER: ${{ secrets.POSTGRES_DB_USER }}
+          POSTGRES_DB_PASSWORD: ${{ secrets.POSTGRES_DB_PASSWORD }}
